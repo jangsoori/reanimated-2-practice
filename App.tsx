@@ -1,21 +1,51 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { PortalProvider } from '@gorhom/portal';
+import { Routes } from './Routes';
+import CardColorSwitcher from './src/CardColorSwitcher/CardColorSwitcher';
+import Main from './src/Main';
+import Reflectly from './src/Reflectly/Reflecty';
+import Twitter from './src/Twitter/Twitter';
+import ExpandableHeader from './src/ExpandableHeader/ExpandableHeader';
 
-export default function App() {
+const Stack = createNativeStackNavigator<Routes>();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PortalProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Main"
+            component={Main}
+            options={{
+              title: 'Reanimated 2',
+            }}
+          />
+          <Stack.Screen
+            name="Card Color Change"
+            component={CardColorSwitcher}
+          />
+          <Stack.Screen
+            name="Reflectly"
+            component={Reflectly}
+          />
+          <Stack.Screen
+            name="Twitter"
+            component={Twitter}
+          />
+          <Stack.Screen
+            name="ExpandableHeader"
+            component={ExpandableHeader}
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PortalProvider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
