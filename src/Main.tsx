@@ -23,7 +23,11 @@ export const examples = [
   },
   {
     screen: 'ExpandableHeader',
-    title: 'ExpandedButtonable Header',
+    title: 'Expandable Header',
+  },
+  {
+    screen: 'YoutubePlayButton',
+    title: 'Youtube Play Button',
   },
 ] as const;
 

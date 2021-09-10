@@ -4,4 +4,5 @@ export type Routes = {
   'Reflectly': undefined;
   'Twitter': undefined;
   'ExpandableHeader': undefined;
+  'YoutubePlayButton': undefined
 };
