@@ -46,7 +46,9 @@ const App = () => {
           <Stack.Screen
             name="YoutubePlayButton"
             component={YoutubePlayButton}
-
+            options={{
+              title: 'Youtube Play Button',
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
