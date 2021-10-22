@@ -29,6 +29,10 @@ export const examples = [
     screen: 'YoutubePlayButton',
     title: 'Youtube Play Button',
   },
+  {
+    screen: 'SliderIndicator',
+    title: 'Slider Indicator',
+  },
 ] as const;
 
 type MainScreenNavigationProp = NativeStackNavigationProp<Routes, 'Main'>;

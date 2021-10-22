@@ -5,4 +5,5 @@ export type Routes = {
   'Twitter': undefined;
   'ExpandableHeader': undefined;
   'YoutubePlayButton': undefined
+  'SliderIndicator': undefined
 };

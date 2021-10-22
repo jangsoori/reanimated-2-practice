@@ -9,6 +9,7 @@ import Reflectly from './src/Reflectly/Reflecty';
 import Twitter from './src/Twitter/Twitter';
 import ExpandableHeader from './src/ExpandableHeader/ExpandableHeader';
 import YoutubePlayButton from './src/YoutubePlayButton/YoutubePlayButton';
+import SliderIndicator from './src/SliderIndicator/SliderIndicator';
 
 const Stack = createNativeStackNavigator<Routes>();
 
@@ -49,6 +50,10 @@ const App = () => {
             options={{
               title: 'Youtube Play Button',
             }}
+          />
+          <Stack.Screen
+            name="SliderIndicator"
+            component={SliderIndicator}
           />
         </Stack.Navigator>
       </NavigationContainer>
