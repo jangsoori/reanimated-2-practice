@@ -1,41 +1,17 @@
 import React from 'react';
 import {
-  View, Text, StyleSheet, useWindowDimensions,
+  View,
+  StyleSheet,
 } from 'react-native';
-import Animated, { interpolate, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
+import Dot from './Dot';
 
-interface Props {
+interface IndicatorProps {
     count: number,
     currentIndex: Animated.SharedValue<number>,
-    progress: Animated.SharedValue<number>
 }
 
-const Dot = ({ count, index, progress }:{index:number, progress:Animated.SharedValue<number>, count:number}) => {
-  const { width } = useWindowDimensions();
-  const rStyle = useAnimatedStyle(() => {
-    // const opacity = interpolate(progress.value,
-    //   [
-    //     width * (index - 1),
-    //     width * index,
-    //     width * (index + 1),
-    //   ],
-    //   [0.5, 1, 0.5]);
-    const opacity = interpolate(progress.value,
-      [width * (index - 1), width * index, width * (index + 1)],
-      [0.5, 1, 0.5]);
-    return {
-      opacity,
-    };
-  });
-
-  return (
-
-    <Animated.View style={[styles.dot, rStyle]} />
-
-  );
-};
-
-const Indicator = ({ count, currentIndex, progress }: Props) => {
+const Indicator = ({ count, currentIndex }: IndicatorProps) => {
   const countArray = Array.from(Array(count).keys());
 
   return (
@@ -43,7 +19,7 @@ const Indicator = ({ count, currentIndex, progress }: Props) => {
       {countArray.map((_, i) => {
         return (
           <>
-            <Dot progress={progress} index={i} count={count} />
+            <Dot index={i} currentIndex={currentIndex} />
             {i !== countArray.length - 1 && <View style={{ width: 10 }} />}
           </>
         );
@@ -61,7 +37,7 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     backgroundColor: 'white',
-    borderRadius: 5,
+    borderRadius: 30,
   },
 });
 
