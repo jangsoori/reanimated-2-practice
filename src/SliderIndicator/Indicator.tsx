@@ -1,17 +1,15 @@
-import React from 'react';
-import {
-  View,
-  StyleSheet,
-} from 'react-native';
-import Animated from 'react-native-reanimated';
-import Dot from './Dot';
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import type Animated from "react-native-reanimated";
+
+import { Dot } from "./Dot";
 
 interface IndicatorProps {
-    count: number,
-    currentIndex: Animated.SharedValue<number>,
+  count: number;
+  currentIndex: Animated.SharedValue<number>;
 }
 
-const Indicator = ({ count, currentIndex }: IndicatorProps) => {
+export const Indicator = ({ count, currentIndex }: IndicatorProps) => {
   const countArray = Array.from(Array(count).keys());
 
   return (
@@ -30,15 +28,7 @@ const Indicator = ({ count, currentIndex }: IndicatorProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  dot: {
-    width: 10,
-    height: 10,
-    backgroundColor: 'white',
-    borderRadius: 30,
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });
-
-export default Indicator;

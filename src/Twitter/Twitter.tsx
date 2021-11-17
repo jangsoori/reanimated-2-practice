@@ -1,36 +1,61 @@
-import React, { useState } from 'react';
-import {
-  StyleSheet, Pressable, Text,
-} from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Pressable, Text } from "react-native";
 import Animated, {
-  interpolate, interpolateColor, runOnJS, useAnimatedStyle, useSharedValue, withTiming,
-} from 'react-native-reanimated';
-import * as Haptics from 'expo-haptics';
-import { Portal } from '@gorhom/portal';
-import { AntDesign } from '@expo/vector-icons';
-import ExpandedButton from './ExpandedButton';
+  interpolate,
+  interpolateColor,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
+import * as Haptics from "expo-haptics";
+import { Portal } from "@gorhom/portal";
+import { AntDesign } from "@expo/vector-icons";
+
+import { ExpandedButton } from "./ExpandedButton";
 
 const BUTTON_SIZE = 60;
 
 const buttons = [
-  { icon: () => { return <AntDesign name="antdesign" size={28} color="white" />; }, key: '1' },
-  { icon: () => { return <AntDesign name="picture" size={28} color="white" />; }, key: '2' },
-  { icon: () => { return <AntDesign name="adduser" size={28} color="white" />; }, key: '3' },
+  {
+    icon: () => {
+      return <AntDesign name="antdesign" size={28} color="white" />;
+    },
+    key: "1",
+  },
+  {
+    icon: () => {
+      return <AntDesign name="picture" size={28} color="white" />;
+    },
+    key: "2",
+  },
+  {
+    icon: () => {
+      return <AntDesign name="adduser" size={28} color="white" />;
+    },
+    key: "3",
+  },
 ];
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
-export default function Twitter() {
+export const Twitter = () => {
   const progress = useSharedValue(0);
   const longTap = useSharedValue(0);
   const [longTapActive, setLongTapActive] = useState(false);
 
   const mainButtonStyle = useAnimatedStyle(() => {
     return {
-      transform: [{
-        scale: interpolate(progress.value, [0, 1], [1, 0.75]),
-      }],
-      backgroundColor: interpolateColor(longTap.value, [0, 1], ['#1DA1F2', '#262e36']),
+      transform: [
+        {
+          scale: interpolate(progress.value, [0, 1], [1, 0.75]),
+        },
+      ],
+      backgroundColor: interpolateColor(
+        longTap.value,
+        [0, 1],
+        ["#1DA1F2", "#262e36"]
+      ),
     };
   });
 
@@ -77,8 +102,11 @@ export default function Twitter() {
   };
 
   const renderMainBtn = () => {
-    return !longTapActive ? <AntDesign name="twitter" size={28} color="white" />
-      : <AntDesign name="close" size={24} color="#1DA1F2" />;
+    return !longTapActive ? (
+      <AntDesign name="twitter" size={28} color="white" />
+    ) : (
+      <AntDesign name="close" size={24} color="#1DA1F2" />
+    );
   };
 
   const renderExpandedButtonableBtns = () => {
@@ -97,13 +125,13 @@ export default function Twitter() {
 
   return (
     <Pressable style={styles.container}>
-      <Text>{longTapActive ? 'Active' : 'Not active'}</Text>
+      <Text>{longTapActive ? "Active" : "Not active"}</Text>
       <Portal>
         {longTapActive && (
-        <AnimatedPressable
-          onPress={handleOverlayTap}
-          style={[styles.overlay, overlayStyle]}
-        />
+          <AnimatedPressable
+            onPress={handleOverlayTap}
+            style={[styles.overlay, overlayStyle]}
+          />
         )}
         <Animated.View style={styles.buttonsContainer}>
           <AnimatedPressable
@@ -119,31 +147,30 @@ export default function Twitter() {
         </Animated.View>
       </Portal>
     </Pressable>
-
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F5F8FA',
+    backgroundColor: "#F5F8FA",
     flex: 1,
   },
   buttonsContainer: {
     flex: 1,
-    position: 'absolute',
+    position: "absolute",
     bottom: 50,
     right: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   mainBtn: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     width: BUTTON_SIZE,
     height: BUTTON_SIZE,
     borderRadius: BUTTON_SIZE / 2,
     zIndex: 1,
-    shadowColor: '#262e36',
+    shadowColor: "#262e36",
     shadowOffset: {
       width: 0,
       height: 3,
@@ -153,10 +180,9 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   overlay: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#262e36',
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#262e36",
   },
-
 });

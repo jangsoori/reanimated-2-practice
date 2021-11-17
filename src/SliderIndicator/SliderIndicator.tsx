@@ -1,20 +1,21 @@
-import React from 'react';
-import {
-  View,
-  StyleSheet,
-  useWindowDimensions,
-} from 'react-native';
-import Animated, { useAnimatedScrollHandler, useDerivedValue, useSharedValue } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Indicator from './Indicator';
+import React from "react";
+import { View, StyleSheet, useWindowDimensions } from "react-native";
+import Animated, {
+  useAnimatedScrollHandler,
+  useDerivedValue,
+  useSharedValue,
+} from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import { Indicator } from "./Indicator";
 
 const slides = [
-  { color: '#b84275' },
-  { color: '#f38361' },
-  { color: '#284b96' },
+  { color: "#b84275" },
+  { color: "#f38361" },
+  { color: "#284b96" },
 ];
 
-const SliderIndicator = () => {
+export const SliderIndicator = () => {
   const { width } = useWindowDimensions();
   const { bottom } = useSafeAreaInsets();
   const scrollX = useSharedValue(0);
@@ -54,7 +55,6 @@ const SliderIndicator = () => {
         <Indicator count={slides.length} currentIndex={index} />
       </View>
     </View>
-
   );
 };
 
@@ -63,11 +63,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   indicatorContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    alignSelf: 'center',
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    alignSelf: "center",
   },
 });
-
-export default SliderIndicator;

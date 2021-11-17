@@ -1,37 +1,37 @@
-import React from 'react';
-import {
-  Dimensions, Pressable, StyleSheet, View,
-} from 'react-native';
-import { TapGestureHandler, TapGestureHandlerGestureEvent } from 'react-native-gesture-handler';
-import Animated, { runOnJS, useAnimatedGestureHandler } from 'react-native-reanimated';
+import React from "react";
+import { Dimensions, StyleSheet } from "react-native";
+import type { TapGestureHandlerGestureEvent } from "react-native-gesture-handler";
+import { TapGestureHandler } from "react-native-gesture-handler";
+import Animated, {
+  runOnJS,
+  useAnimatedGestureHandler,
+} from "react-native-reanimated";
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get("window");
 
 const WIDTH = width / 3;
 const RADIUS = 45;
 
 interface ColorProps {
-    color:string,
-    onPress:any,
-    translateX: Animated.SharedValue<number>
+  color: string;
+  onPress: (position: { x: number; y: number }) => void;
 }
 
-export default function Color({ color, onPress, translateX }: ColorProps) {
-  const onGestureEvent = useAnimatedGestureHandler<TapGestureHandlerGestureEvent>({
-    onActive: ({ absoluteX: x, absoluteY: y }) => {
-      runOnJS(onPress)(({ x, y }));
-    },
-  });
+export const Color = ({ color, onPress }: ColorProps) => {
+  const onGestureEvent =
+    useAnimatedGestureHandler<TapGestureHandlerGestureEvent>({
+      onActive: ({ absoluteX: x, absoluteY: y }) => {
+        runOnJS(onPress)({ x, y });
+      },
+    });
   return (
-    <Animated.View
-      style={{ width: WIDTH, alignItems: 'center' }}
-    >
+    <Animated.View style={{ width: WIDTH, alignItems: "center" }}>
       <TapGestureHandler onGestureEvent={onGestureEvent}>
         <Animated.View style={[styles.container, { backgroundColor: color }]} />
       </TapGestureHandler>
     </Animated.View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
     height: RADIUS * 2,
     borderRadius: RADIUS,
     borderWidth: 6,
-    borderColor: 'white',
+    borderColor: "white",
   },
 });

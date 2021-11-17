@@ -1,17 +1,25 @@
-import React from 'react';
+import React from "react";
 import {
-  StyleSheet, View, Image, Dimensions, RefreshControl,
-} from 'react-native';
+  StyleSheet,
+  View,
+  Image,
+  Dimensions,
+  RefreshControl,
+} from "react-native";
 import Animated, {
-  useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, withTiming,
-} from 'react-native-reanimated';
-import img from '../../assets/images/expandable_header.jpg';
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
-const { width, height } = Dimensions.get('window');
+import img from "../../assets/images/expandable_header.jpg";
+
+const { width, height } = Dimensions.get("window");
 
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 
-export default function ExpandedButton() {
+export const ExpandableHeader = () => {
   const translationY = useSharedValue(0);
   const opacity = useSharedValue(0);
   const [refreshing, setRefreshing] = React.useState(false);
@@ -29,7 +37,10 @@ export default function ExpandedButton() {
 
   const animatedImageStyle = useAnimatedStyle(() => {
     return {
-      height: translationY.value < 0 ? (height * 0.4) - translationY.value : (height * 0.4),
+      height:
+        translationY.value < 0
+          ? height * 0.4 - translationY.value
+          : height * 0.4,
       opacity: opacity.value,
     };
   });
@@ -46,12 +57,9 @@ export default function ExpandedButton() {
         onScroll={scrollHandler}
         contentContainerStyle={{ flexGrow: 1 }}
         scrollEventThrottle={16}
-        refreshControl={(
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-          />
-          )}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       >
         <View style={styles.foreground}>
           <View style={{ height: height * 2 }} />
@@ -59,24 +67,23 @@ export default function ExpandedButton() {
       </Animated.ScrollView>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   foreground: {
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     zIndex: 20,
-    backgroundColor: 'dodgerblue',
+    backgroundColor: "dodgerblue",
     padding: 10,
     marginTop: 270,
     flex: 1,
   },
-  headerContainer: {},
   imageStyle: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     top: 0,
-    resizeMode: 'cover',
+    resizeMode: "cover",
     width,
   },
 });

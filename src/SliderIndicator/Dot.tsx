@@ -1,13 +1,16 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import React from "react";
+import { StyleSheet } from "react-native";
+import Animated, {
+  useAnimatedStyle,
+  withTiming,
+} from "react-native-reanimated";
 
 interface DotProps {
-    currentIndex: Animated.SharedValue<number>;
-    index: number
+  currentIndex: Animated.SharedValue<number>;
+  index: number;
 }
 
-const Dot = ({ currentIndex, index }: DotProps) => {
+export const Dot = ({ currentIndex, index }: DotProps) => {
   const rStyle = useAnimatedStyle(() => {
     const isActive = currentIndex.value === index;
     return {
@@ -23,9 +26,7 @@ const styles = StyleSheet.create({
   dot: {
     width: 10,
     height: 10,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 30,
   },
 });
-
-export default Dot;
