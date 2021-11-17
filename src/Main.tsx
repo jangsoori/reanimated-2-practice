@@ -30,6 +30,10 @@ export const examples = [
     screen: "SliderIndicator",
     title: "Slider Indicator",
   },
+  {
+    screen: "CardSwiper",
+    title: "Tarot",
+  },
 ] as const;
 
 type MainScreenNavigationProp = NativeStackNavigationProp<Routes, "Main">;

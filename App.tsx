@@ -11,6 +11,7 @@ import { Twitter } from "./src/Twitter/Twitter";
 import { ExpandableHeader } from "./src/ExpandableHeader/ExpandableHeader";
 import { YoutubePlayButton } from "./src/YoutubePlayButton/YoutubePlayButton";
 import { SliderIndicator } from "./src/SliderIndicator/SliderIndicator";
+import { CardSwiper } from "./src/CardSwiper/CardSwiper";
 
 const Stack = createNativeStackNavigator<Routes>();
 
@@ -47,6 +48,7 @@ const App = () => {
             }}
           />
           <Stack.Screen name="SliderIndicator" component={SliderIndicator} />
+          <Stack.Screen name="CardSwiper" component={CardSwiper} />
         </Stack.Navigator>
       </NavigationContainer>
     </PortalProvider>
