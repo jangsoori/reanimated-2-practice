@@ -7,4 +7,5 @@ export type Routes = {
   YoutubePlayButton: undefined;
   SliderIndicator: undefined;
   CardSwiper: undefined;
+  CardList: undefined;
 };
